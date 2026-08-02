@@ -21,7 +21,7 @@ module.exports = defineConfig({
   webServer: [
     {
       command: 'node setup/start-test-backend.js',
-      url: 'http://localhost:4000',
+      url: 'http://localhost:4001',
       timeout: 30000,
       reuseExistingServer: false,
     },
