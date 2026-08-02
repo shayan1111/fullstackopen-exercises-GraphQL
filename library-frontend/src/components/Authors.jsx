@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client/react";
 import { ALL_AUTHORS, ADD_BIRTHYEAR } from "../../queries";
 import { useState } from "react";
 
-const Authors = () => {
+const Authors = ({ token }) => {
   // Fields for the name and born
   const [name, setName] = useState("");
   const [born, setBorn] = useState("");
@@ -17,6 +17,44 @@ const Authors = () => {
 
     setName("");
     setBorn("");
+  };
+
+  const birthYearForm = () => {
+    return (
+      <div>
+        <h2>Set birthyear</h2>
+        {/* Form */}
+        <form onSubmit={submit}>
+          <div>
+            {/* Use a loop to consider the authors as <select> */}
+            <label>
+              name
+              <select
+                name="selectAuthor"
+                value={name}
+                onChange={({ target }) => setName(target.value)}
+              >
+                {authors.map((author) => (
+                  <option key={author.name} value={author.name}>
+                    {author.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              born
+              <input
+                value={born}
+                onChange={({ target }) => setBorn(target.value)}
+              />
+            </label>
+          </div>
+          <button>update author</button>
+        </form>
+      </div>
+    );
   };
 
   const authorResult = useQuery(ALL_AUTHORS);
@@ -45,37 +83,7 @@ const Authors = () => {
         </tbody>
       </table>
       <br></br>
-      <h2>Set birthyear</h2>
-      {/* Form */}
-      <form onSubmit={submit}>
-        <div>
-          {/* Use a loop to consider the authors as <select> */}
-          <label>
-            name
-            <select
-              name="selectAuthor"
-              value={name}
-              onChange={({ target }) => setName(target.value)}
-            >
-              {authors.map((author) => (
-                <option key={author.name} value={author.name}>
-                  {author.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            born
-            <input
-              value={born}
-              onChange={({ target }) => setBorn(target.value)}
-            />
-          </label>
-        </div>
-        <button>update author</button>
-      </form>
+      {token && birthYearForm()}
     </div>
   );
 };
