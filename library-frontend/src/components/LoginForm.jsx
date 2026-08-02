@@ -32,7 +32,7 @@ const LoginForm = ({ setToken }) => {
     <div>
       <form onSubmit={onSubmit}>
         <label>
-          name
+          username
           <input
             value={username}
             onChange={({ target }) => setUsername(target.value)}
