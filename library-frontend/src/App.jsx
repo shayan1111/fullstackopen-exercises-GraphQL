@@ -16,9 +16,12 @@ const App = () => {
 
         <button onClick={() => setPage("books")}>books</button>
 
-        {token && <button onClick={() => setPage("add")}>add book</button>}
-
+        {token && 
+        <>
+        <button onClick={() => setPage("add")}>add book</button>
         <button onClick={() => setPage("recommend")}>recommend</button>
+        </>}
+
 
         {!token && <button onClick={() => setPage("login")}>login</button>}
 
