@@ -22,6 +22,7 @@ const Authors = ({ token }) => {
   const birthYearForm = () => {
     return (
       <div>
+        
         <h2>Set birthyear</h2>
         {/* Form */}
         <form onSubmit={submit}>
@@ -30,7 +31,7 @@ const Authors = ({ token }) => {
             <label>
               name
               <select
-                name="selectAuthor"
+                name="name"
                 value={name}
                 onChange={({ target }) => setName(target.value)}
               >
